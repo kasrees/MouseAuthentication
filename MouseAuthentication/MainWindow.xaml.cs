@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Input;
-using MouseAuthentication.Models;
-using MouseAuthentication.Services;
+using MouseAuthentication.Signature;
+using MouseAuthentication.Signature.Models;
 
 namespace MouseAuthentication
 {
@@ -30,29 +32,14 @@ namespace MouseAuthentication
 
         private void Login_Click( object sender, RoutedEventArgs e )
         {
-            foreach(var point in _points)
-            {
-                listBox.Items.Add( point.ToString() );
-            }
-            MovementDetection movementDetection = new MovementDetection(_points);
-            List<Movement> movements = new List<Movement>();
-            movements = movementDetection.Get();
-
-            label.Content = $"{movements.Sum( x => x.DiffX )}, {movements.Sum( y => y.DiffY )}";
-            
-
-            foreach (var movement in movements )
-            {
-                listBox1.Items.Add( movement.ToString() );
-            }
+            string signature = SignatureRecognition.GetSignature(_points);
+            loginBox.Text = signature;
         }
 
         private void Reset_Click( object sender, RoutedEventArgs e )
         {
             _points.Clear();
-            listBox.Items.Clear();
-            listBox1.Items.Clear();
-            label.Content = "";
+            InkCanvas.Strokes.Clear();
         }
     }
 }

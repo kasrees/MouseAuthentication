@@ -25,7 +25,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Enter username"  Width="196" FontSize="20" HorizontalContentAlignment="Center" Foreground="#FFEDD8D8"/>
-        <InkCanvas x:Name="SignatureField" 
+        <InkCanvas x:Name="InkCanvas" 
                    HorizontalAlignment="Center" 
                    Height="200" 
                    VerticalAlignment="Top" 
@@ -33,9 +33,11 @@
                    Grid.Column="0" 
                    Grid.ColumnSpan="3" 
                    Grid.Row="2" 
-                   Grid.RowSpan="2"/>
+                   Grid.RowSpan="2"
+                   Mouse.MouseMove="InkCanvas_MouseMove"/>
         <TextBox TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Width="250" Grid.Column="1" Grid.Row="1" FontSize="20"/>
-        <Button Grid.Column="0"
+        <Button x:Name="Reset"
+                Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
                 Height="50"
@@ -43,8 +45,10 @@
                 HorizontalAlignment="Center"
                 Margin="20 0 0 0"
                 Content="Reset"
-                FontSize="20"/>
-        <Button Grid.Column="1"
+                FontSize="20"
+                Click="Reset_Click"/>
+        <Button x:Name="Login"
+                Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
                 Height="50"
@@ -52,7 +56,11 @@
                 HorizontalAlignment="Center"
                 Margin="0 0 20 0"
                 Content="Login"
-                FontSize="20"/>
-        
+                FontSize="20"
+                Click="Login_Click"/>
+        <ListBox x:Name="listBox" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Margin="263,43,3,10" Grid.RowSpan="2"/>
+        <ListBox x:Name="listBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Margin="0,43,266,10" Grid.RowSpan="2"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="50,52,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

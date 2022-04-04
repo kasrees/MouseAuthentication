@@ -13,6 +13,7 @@ namespace MouseAuthentication.Models
         public double DiffY { get; set; }
         public MovementDirection DirectionX { get; set; }
         public MovementDirection DirectionY { get; set; }
+        public double Length { get; set; }
 
         public static MovementDirection GetDirectionX(double diffX)
         {
@@ -42,9 +43,14 @@ namespace MouseAuthentication.Models
             }
         }
 
+        public static double GetLength(double diffX, double diffY)
+        {
+            return Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
+        }
+
         public override string ToString()
         {
-            return $"{DiffX}, {DiffY}, {DirectionX}, {DirectionY}";
+            return $"{DiffX}, {DiffY}, {DirectionX}, {DirectionY}, {Length}";
         }
     }
 }

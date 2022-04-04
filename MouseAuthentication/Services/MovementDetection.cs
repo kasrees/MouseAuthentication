@@ -70,7 +70,8 @@ namespace MouseAuthentication.Services
                 DiffX = diffX,
                 DiffY = diffY,
                 DirectionX = Movement.GetDirectionX( diffX ),
-                DirectionY = Movement.GetDirectionY( diffY )
+                DirectionY = Movement.GetDirectionY( diffY ),
+                Length = Movement.GetLength(diffX, diffY)
             };
         }
     }
